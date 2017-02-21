@@ -8,6 +8,10 @@ var stateDefault ={
     todos:[]
 };
 
+var testStateDefault={
+    
+}
+
 //a reducer is a pure function, gets pass 2 argument
 //first is existing state before action is triggered.
 var reducer = (state = stateDefault,action)=>{
@@ -16,6 +20,11 @@ var reducer = (state = stateDefault,action)=>{
             return{
                 ...state,
                 searchText:action.searchText
+            }
+        case 'REMOVE_MOVIE':
+            return{
+                ...state,
+                movies:state.movies.filter((movie)=>movie.id !== action.id)
             }
             default:
                 return state;
@@ -49,4 +58,8 @@ store.dispatch({
     searchText:'workadasddadadada'
 })
 
+store.dispatch({
+    type:'REMOVE_MOVIE',
+    title:'Max Max'
+});
 console.log('currentState',currentState);
